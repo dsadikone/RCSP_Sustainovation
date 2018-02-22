@@ -1,0 +1,17 @@
+﻿body {
+}
+.ddlstyle {
+    width: 50%;
+    margin: 1%;
+}
+.questionlabel {
+    color: #1C6757;
+}
+
+#tbl_Quiz {
+    margin-top: 20%;
+    background-color: #DFDFDF;
+    border-width: 5px;
+    border-color: #093162;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

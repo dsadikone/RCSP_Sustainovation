@@ -1,0 +1,11 @@
+C:\Users\dsadik.10\Source\Repos\WebApplication1\WebApplication1\bin\Debug\netcoreapp2.0\RCSP_Sustainovation.deps.json
+C:\Users\dsadik.10\Source\Repos\WebApplication1\WebApplication1\bin\Debug\netcoreapp2.0\RCSP_Sustainovation.runtimeconfig.json
+C:\Users\dsadik.10\Source\Repos\WebApplication1\WebApplication1\bin\Debug\netcoreapp2.0\RCSP_Sustainovation.runtimeconfig.dev.json
+C:\Users\dsadik.10\Source\Repos\WebApplication1\WebApplication1\bin\Debug\netcoreapp2.0\RCSP_Sustainovation.dll
+C:\Users\dsadik.10\Source\Repos\WebApplication1\WebApplication1\bin\Debug\netcoreapp2.0\RCSP_Sustainovation.pdb
+C:\Users\dsadik.10\Source\Repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\RCSP_Sustainovation.csprojResolveAssemblyReference.cache
+C:\Users\dsadik.10\Source\Repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\RCSP_Sustainovation.csproj.CoreCompileInputs.cache
+C:\Users\dsadik.10\Source\Repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\RCSP_Sustainovation.AssemblyInfoInputs.cache
+C:\Users\dsadik.10\Source\Repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\RCSP_Sustainovation.AssemblyInfo.cs
+C:\Users\dsadik.10\Source\Repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\RCSP_Sustainovation.dll
+C:\Users\dsadik.10\Source\Repos\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\RCSP_Sustainovation.pdb
