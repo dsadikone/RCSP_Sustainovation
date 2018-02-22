@@ -1,15 +1,14 @@
 ﻿<%@ Page Language="VB" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeFile="TreeQuiz.aspx.vb" Inherits="TreeQuiz" %>
 
 <asp:Content ID="Map" ContentPlaceHolderID="MainContent" Runat="Server">
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
 <head>
     <title>RCSP Tree Quiz</title>
-    <link type="text/css" rel="stylesheet" href="StyleSheet.css" />
 </head>
 <body>
-    <div>
-        <asp:Table ID="tbl_Quiz" runat="server" CellPadding="10" CellSpacing="5" GridLines="Both" HorizontalAlign="Center" Height="239px">
+    <div class ="TableDiv">
+        <asp:Table ID="tbl_Quiz" CssClass="tbl_Quiz" runat="server" CellPadding="5" CellSpacing="5" HorizontalAlign="Center" Height="239px">
             <asp:TableRow>
                 <asp:TableCell HorizontalAlign="Center" VerticalAlign="Middle">
                     <asp:Label ID="lbl_Question" runat="server" Text="Question Goes Here"></asp:Label>

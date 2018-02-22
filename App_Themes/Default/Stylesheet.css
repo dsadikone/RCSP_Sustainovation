@@ -1,0 +1,11 @@
+﻿.tbl_Quiz {
+    border-color: #093162;
+    border-width: 5px;
+    border-style:solid;
+    background-color: #DFDFDF;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.TableDiv {
+    margin-top: 10%;
+}
