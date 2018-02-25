@@ -11,7 +11,37 @@
         <asp:Table ID="tbl_Quiz" CssClass="tbl_Quiz" runat="server" CellPadding="5" CellSpacing="5" HorizontalAlign="Center" Height="239px">
             <asp:TableRow>
                 <asp:TableCell HorizontalAlign="Center" VerticalAlign="Middle">
-                    <asp:Label ID="lbl_Question" runat="server" Text="Question Goes Here"></asp:Label>
+                    <asp:Table ID="tbl_Header" runat="server">
+                        <asp:TableRow>
+                            <asp:TableCell Width="10%">
+                                <asp:Table ID="table_prev" runat="server">
+                                    <asp:TableRow>
+                                        <asp:TableCell>
+                                            <asp:ImageButton ID="imgbtn_prev" ImageUrl="Images/small_left_arrow.png" runat="server" />
+                                        </asp:TableCell>
+
+                                        <asp:TableCell>
+                                        </asp:TableCell>
+                                    </asp:TableRow>
+                                </asp:Table>
+                            </asp:TableCell>
+                            <asp:TableCell Width="80%">
+                                <asp:Label ID="lbl_Question" runat="server" Text="Question Goes Here"></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell Width="10%">
+                                <asp:Table ID="table_next" runat="server">
+                                    <asp:TableRow>
+                                        <asp:TableCell>
+
+                                        </asp:TableCell>
+                                        <asp:TableCell>
+                                            <asp:ImageButton ID="imgbtn_next" ImageUrl="Images/small_right_arrow.png" runat="server" />
+                                        </asp:TableCell>
+                                    </asp:TableRow>
+                                </asp:Table>
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow>
@@ -22,7 +52,7 @@
 
                             </asp:TableCell>
                             <asp:TableCell HorizontalAlign="Center" VerticalAlign="Middle">
-                                <asp:Button ID="btn_A1" runat="server" Text="First Answer Goes Here" Width="100%"/>
+                                <asp:Button ID="btn_A1" runat="server" Text="True" Width="100%"/>
                             </asp:TableCell>
                             <asp:TableCell>
 
@@ -30,24 +60,13 @@
                         </asp:TableRow>
                         <asp:TableRow>
                             <asp:TableCell>
-                                <asp:ImageButton ID="imgbtn_prev" ImageUrl="Images/small_left_arrow.png" runat="server" />
+                                
                             </asp:TableCell>
                             <asp:TableCell HorizontalAlign="Center" VerticalAlign="Middle">
-                                <asp:Button ID="btn_A2" runat="server" Text="Second Answer Goes Here" Width="100%"/>
+                                <asp:Button ID="btn_A2" runat="server" Text="False" Width="100%"/>
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:ImageButton ID="imgbtn_next" ImageUrl="Images/small_right_arrow.png" runat="server" />
-                            </asp:TableCell>
-                        </asp:TableRow>
-                        <asp:TableRow>
-                            <asp:TableCell>
-
-                            </asp:TableCell>
-                            <asp:TableCell HorizontalAlign="Center" VerticalAlign="Middle">
-                                <asp:Button ID="btn_A3" runat="server" Text="Third Answer Goes Here" Width="100%"/>
-                            </asp:TableCell>
-                            <asp:TableCell>
-
+                                
                             </asp:TableCell>
                         </asp:TableRow>
                     </asp:Table>
@@ -58,10 +77,12 @@
                     <asp:Table ID="tbl_Feedback" runat="server">
                         <asp:TableRow>
                             <asp:TableCell Width="25%" HorizontalAlign="Center" VerticalAlign="Top">
-                                <asp:Label ID="lbl_RightWrong" runat="server" Text="R/W"></asp:Label>
+                                <asp:Label ID="lbl_RightWrong" runat="server" Text="Correct/Incorrect."></asp:Label>
                             </asp:TableCell>
+                        </asp:TableRow>
+                        <asp:TableRow>
                             <asp:TableCell Width="75%" HorizontalAlign="Left" VerticalAlign="Top">
-                                <asp:Label ID="lbl_Explanation" runat="server" Text="Explanation for Answer Goes Here"></asp:Label>
+                                <asp:Label ID="lbl_Explanation" runat="server" Text="The sycamore tree is found mostly in..."></asp:Label>
                             </asp:TableCell>
                         </asp:TableRow>
                     </asp:Table>
