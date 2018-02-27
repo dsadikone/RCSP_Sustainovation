@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeFile="TreeQuiz.aspx.vb" Inherits="TreeQuiz" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeFile="TreeQuiz.aspx.cs" Inherits="TreeQuiz" %>
 
 <asp:Content ID="Map" ContentPlaceHolderID="MainContent" Runat="Server">
     <!DOCTYPE html>
@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class ="TableDiv">
-        <asp:Table ID="tbl_Quiz" CssClass="tbl_Quiz" runat="server" CellPadding="5" CellSpacing="5" HorizontalAlign="Center" Height="239px">
+        <asp:Table ID="tbl_Quiz" CssClass="tbl_Quiz" runat="server" CellPadding="5" CellSpacing="5" HorizontalAlign="Center">
             <asp:TableRow>
                 <asp:TableCell HorizontalAlign="Center" VerticalAlign="Middle">
                     <asp:Table ID="tbl_Header" runat="server">
@@ -86,6 +86,12 @@
                             </asp:TableCell>
                         </asp:TableRow>
                     </asp:Table>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell HorizontalAlign="Center">
+                    <asp:Button ID="btn_info" CssClass="info_section" runat="server" Text="More Info." OnClick="Btn_Info_Click" />
+                    <asp:Label ID="lbl_info" CssClass="info_section" runat="server" Text="More info now being shown. This info may possibly be a lot of info. So much info that it may take two or three sentences to show it all." Visible="False"></asp:Label>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>
