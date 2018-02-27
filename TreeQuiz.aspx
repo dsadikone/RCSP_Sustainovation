@@ -91,7 +91,7 @@
             <asp:TableRow>
                 <asp:TableCell HorizontalAlign="Center">
                     <asp:Button ID="btn_info" CssClass="info_section" runat="server" Text="More Info." OnClick="Btn_Info_Click" />
-                    <asp:Label ID="lbl_info" CssClass="info_section" runat="server" Text="More info now being shown. This info may possibly be a lot of info. So much info that it may take two or three sentences to show it all." Visible="False"></asp:Label>
+                    <asp:Label ID="lbl_info" CssClass="info_section" runat="server" Text="More info now being shown. This info may possibly be a lot of info. So much info that it may take two or three sentences to show it all." Visible="False" Width="150px"></asp:Label>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>

@@ -4,12 +4,12 @@
     border-style:solid;
     background-color: #DFDFDF;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    width: inherit;
+    width: 190px;
 }
 
 .TableDiv {
     margin-top: 10%;
-    width: 50%;
+    width: 200px;
 }
 
 .info_section {
