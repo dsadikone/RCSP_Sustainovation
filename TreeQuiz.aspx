@@ -11,7 +11,24 @@
         <asp:Table ID="tbl_Quiz" CssClass="tbl_Quiz" runat="server" CellPadding="5" CellSpacing="5" HorizontalAlign="Center">
             <asp:TableRow>
                 <asp:TableCell HorizontalAlign="Center" VerticalAlign="Middle">
-                    <asp:Table ID="tbl_Header" runat="server">
+                    <asp:Table ID="tbl_Header1" runat="server">
+                        <asp:TableRow>
+                            <asp:TableCell Width="10%">
+                               
+                            </asp:TableCell>
+                            <asp:TableCell Width="80%">
+                                <asp:Label ID="lbl_name" runat="server" Text="Tree Name"></asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell Width="10%">
+                                
+                            </asp:TableCell>
+                        </asp:TableRow>
+                    </asp:Table>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell HorizontalAlign="Center" VerticalAlign="Middle">
+                    <asp:Table ID="tbl_Header2" runat="server">
                         <asp:TableRow>
                             <asp:TableCell Width="10%">
                                 <asp:Table ID="table_prev" runat="server">
