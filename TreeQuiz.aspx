@@ -34,7 +34,7 @@
                                 <asp:Table ID="table_prev" runat="server">
                                     <asp:TableRow>
                                         <asp:TableCell>
-                                            <asp:ImageButton ID="imgbtn_prev" ImageUrl="Images/small_left_arrow.png" runat="server" />
+                                            <asp:ImageButton ID="imgbtn_prev" ImageUrl="Images/small_left_arrow.png" runat="server" OnClientClick="ImgBtn_Prev_Click" />
                                         </asp:TableCell>
 
                                         <asp:TableCell>
@@ -52,7 +52,7 @@
 
                                         </asp:TableCell>
                                         <asp:TableCell>
-                                            <asp:ImageButton ID="imgbtn_next" ImageUrl="Images/small_right_arrow.png" runat="server" />
+                                            <asp:ImageButton ID="imgbtn_next" ImageUrl="Images/small_right_arrow.png" runat="server" OnClientClick="ImgBtn_Next_Click" />
                                         </asp:TableCell>
                                     </asp:TableRow>
                                 </asp:Table>
