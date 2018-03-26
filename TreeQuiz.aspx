@@ -52,7 +52,7 @@
 
                                         </asp:TableCell>
                                         <asp:TableCell>
-                                            <asp:ImageButton ID="imgbtn_next" ImageUrl="Images/small_right_arrow.png" runat="server" OnClick="ImgBtn_Next_Click" />
+                                            <asp:ImageButton ID="imgbtn_next" ImageUrl="Images/small_right_arrow.png" runat="server" OnClick="ImgBtn_Next_Click"/>
                                         </asp:TableCell>
                                     </asp:TableRow>
                                 </asp:Table>

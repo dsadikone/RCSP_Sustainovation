@@ -33,7 +33,7 @@
                 Take the Quiz!
             </p>
             <p>
-                <a class="btn btn-default" href="TreeQuiz.aspx?TreeNumber=1">Start Quiz</a>
+                <a class="btn btn-default" href="TreeQuiz.aspx">Start Quiz</a>
             </p>
         </div>
         <div class="col-md-4">
