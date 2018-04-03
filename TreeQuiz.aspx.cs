@@ -28,8 +28,6 @@ public partial class TreeQuiz : System.Web.UI.Page
         else
         {
             TreeNumber = Convert.ToInt32(Request.Cookies["TreeNum"].Value);
-            GetTreeName(TreeNumber);
-            GetQuestion(TreeNumber);
         }
     }
 
@@ -84,6 +82,8 @@ public partial class TreeQuiz : System.Web.UI.Page
         
         TreeNumber++;
         Response.Cookies["TreeNum"].Value = Convert.ToString(TreeNumber);
+        GetTreeName(TreeNumber);
+        GetQuestion(TreeNumber);
     }
 
     protected void ImgBtn_Prev_Click(object sender, EventArgs a)
@@ -96,5 +96,7 @@ public partial class TreeQuiz : System.Web.UI.Page
         
         TreeNumber--;
         Response.Cookies["TreeNum"].Value = Convert.ToString(TreeNumber);
+        GetTreeName(TreeNumber);
+        GetQuestion(TreeNumber);
     }
 }
