@@ -1,27 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 public partial class TreeQuiz : System.Web.UI.Page
 {
-    public int TreeNum;
-    /*{
-        get
-        {
-            return (int)ViewState["TreeNum"];
-        }
-        set
-        {
-            ViewState["TreeNum"] = value;
-        }
-    }*/
-
-    public string TreeNumStr;
+    public int TreeNumber;
 
     SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SQLConnection"].ConnectionString);
 
@@ -32,8 +15,21 @@ public partial class TreeQuiz : System.Web.UI.Page
             Response.Cookies["TreeNum"].Value = "4";
             Response.Cookies["TreeNum"].Expires = DateTime.Now.AddMinutes(90);
 
-            GetTreeName();
-            GetQuestion();
+            //hack
+            //object sndr = new object();
+            //EventArgs evnt = new EventArgs();
+            //ImgBtn_Next_Click(sndr, evnt);
+
+            TreeNumber = Convert.ToInt32(Request.Cookies["TreeNum"].Value);
+            GetTreeName(TreeNumber);
+            GetQuestion(TreeNumber);
+
+        }
+        else
+        {
+            TreeNumber = Convert.ToInt32(Request.Cookies["TreeNum"].Value);
+            GetTreeName(TreeNumber);
+            GetQuestion(TreeNumber);
         }
     }
 
@@ -43,16 +39,13 @@ public partial class TreeQuiz : System.Web.UI.Page
         btn_info.Visible = false; 
     }
 
-    protected void GetTreeName()
+    protected void GetTreeName(int TreeNumber)
     {
-        TreeNumStr = Request.Cookies["TreeNum"].Value;
-        TreeNum = Convert.ToInt32(TreeNumStr);
-
         string cmdStr = "[dbo].GetScientificName";
         connection.Open();
         using (SqlCommand command = new SqlCommand(cmdStr, connection))
         {
-            command.Parameters.AddWithValue("@treeNumber", TreeNum);
+            command.Parameters.AddWithValue("@treeNumber", TreeNumber);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
@@ -61,25 +54,21 @@ public partial class TreeQuiz : System.Web.UI.Page
             }
         }
         connection.Close();
+        lbl_RightWrong.Text = "" + TreeNumber;
     }
 
-    protected void GetQuestion()
+    protected void GetQuestion(int TreeNumber)
     {
-        TreeNumStr = Request.Cookies["TreeNum"].Value;
-        TreeNum = Convert.ToInt32(TreeNumStr);
-
         string cmdStr = "[dbo].GetTFStatement";
         connection.Open();
         using (SqlCommand command = new SqlCommand(cmdStr, connection))
         {
-            command.Parameters.AddWithValue("@treeNumber", TreeNum);
+            command.Parameters.AddWithValue("@treeNumber", TreeNumber);
             command.CommandType = System.Data.CommandType.StoredProcedure;
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
                 lbl_Question.Text = (string)reader["TFStatement"];
-                //temp
-                lbl_RightWrong.Text = "" + TreeNum;
             }
         }
         connection.Close();
@@ -92,15 +81,9 @@ public partial class TreeQuiz : System.Web.UI.Page
         string url = Request.Url.AbsolutePath;
         string updatedQueryString = "?" + nameValues.ToString();
         Response.Redirect(url + updatedQueryString);*/
-
-        TreeNumStr = Request.Cookies["TreeNum"].Value;
-        TreeNum = Convert.ToInt32(TreeNumStr);
-        TreeNum++;
-        TreeNumStr = Convert.ToString(TreeNum);
-        Response.Cookies["TreeNum"].Value = TreeNumStr;
-
-        GetTreeName();
-        GetQuestion();
+        
+        TreeNumber++;
+        Response.Cookies["TreeNum"].Value = Convert.ToString(TreeNumber);
     }
 
     protected void ImgBtn_Prev_Click(object sender, EventArgs a)
@@ -110,14 +93,8 @@ public partial class TreeQuiz : System.Web.UI.Page
         string url = Request.Url.AbsolutePath;
         string updatedQueryString = "?" + nameValues.ToString();
         Response.Redirect(url + updatedQueryString);*/
-
-        TreeNumStr = Request.Cookies["TreeNum"].Value;
-        TreeNum = Convert.ToInt32(TreeNumStr);
-        TreeNum--;
-        TreeNumStr = Convert.ToString(TreeNum);
-        Response.Cookies["TreeNum"].Value = TreeNumStr;
-
-        GetTreeName();
-        GetQuestion();
+        
+        TreeNumber--;
+        Response.Cookies["TreeNum"].Value = Convert.ToString(TreeNumber);
     }
 }
