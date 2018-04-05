@@ -69,7 +69,7 @@
 
                             </asp:TableCell>
                             <asp:TableCell HorizontalAlign="Center" VerticalAlign="Middle">
-                                <asp:Button ID="btn_A1" runat="server" Text="True" Width="100%"/>
+                                <asp:Button ID="btn_True" runat="server" Text="True" Width="100%" OnClick="btn_True_Click" BackColor="White" />
                             </asp:TableCell>
                             <asp:TableCell>
 
@@ -80,7 +80,7 @@
                                 
                             </asp:TableCell>
                             <asp:TableCell HorizontalAlign="Center" VerticalAlign="Middle">
-                                <asp:Button ID="btn_A2" runat="server" Text="False" Width="100%"/>
+                                <asp:Button ID="btn_False" runat="server" Text="False" Width="100%" OnClick="btn_False_Click" BackColor="White" />
                             </asp:TableCell>
                             <asp:TableCell>
                                 
@@ -94,7 +94,7 @@
                     <asp:Table ID="tbl_Feedback" runat="server">
                         <asp:TableRow>
                             <asp:TableCell Width="25%" HorizontalAlign="Center" VerticalAlign="Top">
-                                <asp:Label ID="lbl_RightWrong" runat="server" Text="Correct/Incorrect."></asp:Label>
+                                <asp:Label ID="lbl_RightWrong" runat="server" Text="Correct/Incorrect." Visible="false"></asp:Label>
                             </asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow>
