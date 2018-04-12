@@ -6,6 +6,12 @@ public partial class TreeQuiz : System.Web.UI.Page
 {
     public int TreeNumber;
 
+    public int Wrongs;
+    public int Rights;
+    public int Answered;
+    public int HighestAnswered;
+    public double Score;
+
     SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SQLConnection"].ConnectionString);
 
     protected void Page_Load(object sender, EventArgs e)
@@ -13,14 +19,23 @@ public partial class TreeQuiz : System.Web.UI.Page
         if (!this.IsPostBack)
         {
             Response.Cookies["TreeNum"].Value = "1";
-            Response.Cookies["TreeNum"].Expires = DateTime.Now.AddMinutes(90);
+            Response.Cookies["TreeNum"].Expires = DateTime.Now.AddMinutes(60);
 
-            //hack
-            //object sndr = new object();
-            //EventArgs evnt = new EventArgs();
-            //ImgBtn_Next_Click(sndr, evnt);
+            Response.Cookies["Wrongs"].Value = "0";
+            Response.Cookies["Wrongs"].Expires = DateTime.Now.AddMinutes(60);
 
+            Response.Cookies["Rights"].Value = "0";
+            Response.Cookies["Rights"].Expires = DateTime.Now.AddMinutes(60);
+
+            Response.Cookies["HighestAnswered"].Value = "0";
+            Response.Cookies["HighestAnswered"].Expires = DateTime.Now.AddMinutes(60);
+
+            //Score = 0;
+            HighestAnswered = Convert.ToInt32(Request.Cookies["HighestAnswered"].Value);
+            Rights = Convert.ToInt32(Request.Cookies["Rights"].Value);
+            Wrongs = Convert.ToInt32(Request.Cookies["Wrongs"].Value);
             TreeNumber = Convert.ToInt32(Request.Cookies["TreeNum"].Value);
+
             GetTreeName(TreeNumber);
             GetQuestion(TreeNumber);
 
@@ -28,7 +43,25 @@ public partial class TreeQuiz : System.Web.UI.Page
         else
         {
             TreeNumber = Convert.ToInt32(Request.Cookies["TreeNum"].Value);
-           
+
+            // disables buttons of questions that have already been answered, so the user can't go back and switch after getting wrong. 
+            if ((Convert.ToInt32(Request.Cookies["TreeNum"].Value)) < (Convert.ToInt32(Request.Cookies["HighestAnswered"].Value)))
+            {
+                btn_False.Enabled = false;
+                btn_False.Enabled = false;
+            }
+            else
+            {
+                btn_False.Enabled = true;
+                btn_True.Enabled = true;
+            }
+
+            if ((Convert.ToInt32(Request.Cookies["HighestAnswered"].Value) > 0))
+            {
+                lbl_Score.Visible = true;
+                Score = (Convert.ToDouble(Request.Cookies["Rights"].Value) / Convert.ToDouble(Request.Cookies["HighestAnswered"].Value)) * 100;
+                lbl_Score.Text = "Score: %" + Convert.ToInt32(Score);
+            }
         }
     }
 
@@ -74,36 +107,24 @@ public partial class TreeQuiz : System.Web.UI.Page
 
     protected void ImgBtn_Next_Click(object sender, EventArgs a)
     {
-        /*var nameValues = HttpUtility.ParseQueryString(Request.QueryString.ToString());
-        nameValues.Set("TreeNumber", Convert.ToString(TreeNum));
-        string url = Request.Url.AbsolutePath;
-        string updatedQueryString = "?" + nameValues.ToString();
-        Response.Redirect(url + updatedQueryString);*/
-        
         TreeNumber++;
         Response.Cookies["TreeNum"].Value = Convert.ToString(TreeNumber);
         GetTreeName(TreeNumber);
         GetQuestion(TreeNumber);
-        lbl_RightWrong.Visible = false;
         btn_False.BackColor = System.Drawing.Color.White;
         btn_True.BackColor = System.Drawing.Color.White;
     }
 
     protected void ImgBtn_Prev_Click(object sender, EventArgs a)
     {
-        /*var nameValues = HttpUtility.ParseQueryString(Request.QueryString.ToString());
-        nameValues.Set("TreeNumber", Convert.ToString(TreeNum));
-        string url = Request.Url.AbsolutePath;
-        string updatedQueryString = "?" + nameValues.ToString();
-        Response.Redirect(url + updatedQueryString);*/
-        
         TreeNumber--;
         Response.Cookies["TreeNum"].Value = Convert.ToString(TreeNumber);
         GetTreeName(TreeNumber);
         GetQuestion(TreeNumber);
-        lbl_RightWrong.Visible = false;
-        btn_False.BackColor = System.Drawing.Color.White;
-        btn_True.BackColor = System.Drawing.Color.White;
+        //btn_False.BackColor = System.Drawing.Color.White;
+        //btn_True.BackColor = System.Drawing.Color.White;
+        btn_False.Enabled = false;
+        btn_True.Enabled = false;
     }
 
     protected void btn_True_Click(object sender, EventArgs a)
@@ -125,17 +146,26 @@ public partial class TreeQuiz : System.Web.UI.Page
 
         if (_Answer == "True")
         {
-            btn_False.BackColor = System.Drawing.Color.Red;
-            btn_True.BackColor = System.Drawing.Color.Green;
-            lbl_RightWrong.Text = "Correct!";
-            lbl_RightWrong.Visible = true;
+            btn_True.BackColor = System.Drawing.Color.LightSeaGreen;
+            Rights = Convert.ToInt32(Request.Cookies["Rights"].Value);
+            Rights++;
+            Response.Cookies["Rights"].Value = Convert.ToString(Rights);
         }
         else
         {
-            btn_False.BackColor = System.Drawing.Color.Green;
-            btn_True.BackColor = System.Drawing.Color.Red;
-            lbl_RightWrong.Text = "Incorrect.";
-            lbl_RightWrong.Visible = true;
+            btn_True.BackColor = System.Drawing.Color.Firebrick;
+            Wrongs++;
+            Response.Cookies["Wrongs"].Value = Convert.ToString(Wrongs);
+        }
+
+        btn_False.Enabled = false;
+        btn_True.Enabled = false;
+        
+        // stuff for proper scoring
+        if ((Convert.ToInt32(Request.Cookies["TreeNum"].Value)) > (Convert.ToInt32(Request.Cookies["HighestAnswered"].Value)))
+        {
+            HighestAnswered = Convert.ToInt32(Request.Cookies["TreeNum"].Value);
+            Response.Cookies["HighestAnswered"].Value = Convert.ToString(HighestAnswered);
         }
     }
 
@@ -158,19 +188,27 @@ public partial class TreeQuiz : System.Web.UI.Page
 
         if (_Answer == "True")
         {
-            btn_False.BackColor = System.Drawing.Color.Red;
-            btn_True.BackColor = System.Drawing.Color.Green;
-            lbl_RightWrong.Text = "Incorrect!";
-            lbl_RightWrong.Visible = true;
+            btn_False.BackColor = System.Drawing.Color.Firebrick;
+            Wrongs++;
+            Response.Cookies["Wrongs"].Value = Convert.ToString(Wrongs);
             // add score
         }
         else
         {
-            btn_False.BackColor = System.Drawing.Color.Green;
-            btn_True.BackColor = System.Drawing.Color.Red;
-            lbl_RightWrong.Text = "Correct!";
-            lbl_RightWrong.Visible = true;
-            // add score
+            btn_False.BackColor = System.Drawing.Color.LightSeaGreen;
+            Rights = Convert.ToInt32(Request.Cookies["Rights"].Value);
+            Rights++;
+            Response.Cookies["Rights"].Value = Convert.ToString(Rights);
+        }
+
+        btn_False.Enabled = false;
+        btn_True.Enabled = false;
+
+        // stuff for proper scoring
+        if ((Convert.ToInt32(Request.Cookies["TreeNum"].Value)) > (Convert.ToInt32(Request.Cookies["HighestAnswered"].Value)))
+        {
+            HighestAnswered = Convert.ToInt32(Request.Cookies["TreeNum"].Value);
+            Response.Cookies["HighestAnswered"].Value = Convert.ToString(HighestAnswered);
         }
     }
 }

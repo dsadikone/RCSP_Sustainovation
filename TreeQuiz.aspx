@@ -94,12 +94,12 @@
                     <asp:Table ID="tbl_Feedback" runat="server">
                         <asp:TableRow>
                             <asp:TableCell Width="25%" HorizontalAlign="Center" VerticalAlign="Top">
-                                <asp:Label ID="lbl_RightWrong" runat="server" Text="Correct/Incorrect." Visible="false"></asp:Label>
+                                <asp:Label ID="lbl_Score" runat="server" Text="Score: 0%" Visible="False"></asp:Label>
                             </asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow>
                             <asp:TableCell Width="75%" HorizontalAlign="Left" VerticalAlign="Top">
-                                <asp:Label ID="lbl_Explanation" runat="server" Text="The sycamore tree is found mostly in..."></asp:Label>
+                                
                             </asp:TableCell>
                         </asp:TableRow>
                     </asp:Table>
