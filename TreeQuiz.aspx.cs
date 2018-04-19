@@ -38,6 +38,7 @@ public partial class TreeQuiz : System.Web.UI.Page
 
             GetTreeName(TreeNumber);
             GetQuestion(TreeNumber);
+            btn_info.Enabled = false;
 
         }
         else
@@ -62,13 +63,56 @@ public partial class TreeQuiz : System.Web.UI.Page
                 Score = (Convert.ToDouble(Request.Cookies["Rights"].Value) / Convert.ToDouble(Request.Cookies["HighestAnswered"].Value)) * 100;
                 lbl_Score.Text = "Score: %" + Convert.ToInt32(Score);
             }
+
+            lbl_info.Visible = false;
+            btn_info.Visible = true;
+            btn_info.Enabled = false;
         }
     }
 
     protected void Btn_Info_Click(object sender, EventArgs e)
     {
+        String _Answer = check_Answer();
+
+        if (_Answer == "True")
+        {
+            string cmdStr = "[dbo].GetInfo";
+            connection.Open();
+            using (SqlCommand command = new SqlCommand(cmdStr, connection))
+            {
+                command.Parameters.AddWithValue("@treeNumber", TreeNumber);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    lbl_info.Text = (string)reader["information"];
+                }
+            }
+            
+            connection.Close();
+        }
+
+        else
+        {
+            string cmdStr = "[dbo].GetTruth";
+            connection.Open();
+            using (SqlCommand command = new SqlCommand(cmdStr, connection))
+            {
+                command.Parameters.AddWithValue("@treeNumber", TreeNumber);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    lbl_info.Text = (string)reader["truth"];
+                }
+            }
+            connection.Close();
+        }
+
+        btn_info.Visible = false;
         lbl_info.Visible = true;
-        btn_info.Visible = false; 
+        btn_True.Enabled = false;
+        btn_False.Enabled = false;
     }
 
     protected void GetTreeName(int TreeNumber)
@@ -129,7 +173,7 @@ public partial class TreeQuiz : System.Web.UI.Page
 
     protected void btn_True_Click(object sender, EventArgs a)
     {
-        string _Answer = "";
+        /*string _Answer = "";
         string cmdStr = "[dbo].GetAnswer";
         connection.Open();
         using (SqlCommand command = new SqlCommand(cmdStr, connection))
@@ -142,7 +186,9 @@ public partial class TreeQuiz : System.Web.UI.Page
                 _Answer = (string)reader["answer"];
             }
         }
-        connection.Close();
+        connection.Close();*/
+
+        String _Answer = check_Answer();
 
         if (_Answer == "True")
         {
@@ -167,9 +213,11 @@ public partial class TreeQuiz : System.Web.UI.Page
             HighestAnswered = Convert.ToInt32(Request.Cookies["TreeNum"].Value);
             Response.Cookies["HighestAnswered"].Value = Convert.ToString(HighestAnswered);
         }
+
+        btn_info.Enabled = true;
     }
 
-    protected void btn_False_Click(object sender, EventArgs a)
+    protected string check_Answer()
     {
         String _Answer = "";
         string cmdStr = "[dbo].GetAnswer";
@@ -185,6 +233,28 @@ public partial class TreeQuiz : System.Web.UI.Page
             }
         }
         connection.Close();
+
+        return _Answer;
+    }
+
+    protected void btn_False_Click(object sender, EventArgs a)
+    {
+        /*String _Answer = "";
+        string cmdStr = "[dbo].GetAnswer";
+        connection.Open();
+        using (SqlCommand command = new SqlCommand(cmdStr, connection))
+        {
+            command.Parameters.AddWithValue("@treeNumber", TreeNumber);
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                _Answer = (string)reader["answer"];
+            }
+        }
+        connection.Close();
+        */
+        String _Answer = check_Answer();
 
         if (_Answer == "True")
         {
@@ -210,5 +280,7 @@ public partial class TreeQuiz : System.Web.UI.Page
             HighestAnswered = Convert.ToInt32(Request.Cookies["TreeNum"].Value);
             Response.Cookies["HighestAnswered"].Value = Convert.ToString(HighestAnswered);
         }
+
+        btn_info.Enabled = true;
     }
 }

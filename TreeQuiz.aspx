@@ -17,7 +17,7 @@
                                
                             </asp:TableCell>
                             <asp:TableCell Width="80%">
-                                <asp:Label ID="lbl_name" runat="server" Text="Tree Name"></asp:Label>
+                                <asp:Label ID="lbl_name" CssClass="treename" runat="server" Text="Tree Name"></asp:Label>
                             </asp:TableCell>
                             <asp:TableCell Width="10%">
                                 
@@ -69,7 +69,7 @@
 
                             </asp:TableCell>
                             <asp:TableCell HorizontalAlign="Center" VerticalAlign="Middle">
-                                <asp:Button ID="btn_True" runat="server" Text="True" Width="100%" OnClick="btn_True_Click" BackColor="White" />
+                                <asp:Button ID="btn_True" CssClass="btn_TF" runat="server" Text="True" Width="100%" OnClick="btn_True_Click" BackColor="White" />
                             </asp:TableCell>
                             <asp:TableCell>
 
@@ -80,7 +80,7 @@
                                 
                             </asp:TableCell>
                             <asp:TableCell HorizontalAlign="Center" VerticalAlign="Middle">
-                                <asp:Button ID="btn_False" runat="server" Text="False" Width="100%" OnClick="btn_False_Click" BackColor="White" />
+                                <asp:Button ID="btn_False" CssClass="btn_TF" runat="server" Text="False" Width="100%" OnClick="btn_False_Click" BackColor="White" />
                             </asp:TableCell>
                             <asp:TableCell>
                                 
@@ -106,9 +106,9 @@
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow>
-                <asp:TableCell HorizontalAlign="Center">
-                    <asp:Button ID="btn_info" CssClass="info_section" runat="server" Text="More Info." OnClick="Btn_Info_Click" />
-                    <asp:Label ID="lbl_info" CssClass="info_section" runat="server" Text="More info now being shown. This info may possibly be a lot of info. So much info that it may take two or three sentences to show it all." Visible="False" Width="150px"></asp:Label>
+                <asp:TableCell HorizontalAlign="Center" Width ="80%">
+                    <asp:Button ID="btn_info" CssClass="btn_TF" runat="server" Text="+" OnClick="Btn_Info_Click" />
+                    <asp:Label ID="lbl_info" CssClass="info_section" runat="server" Text="" Visible="False"></asp:Label>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>

@@ -1,17 +1,43 @@
 ﻿.tbl_Quiz {
-    border-color: #093162;
-    border-width: 5px;
-    border-style:solid;
-    background-color: #DFDFDF;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    width: 190px;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 350px;
+    height: 100%;
+    text-align: center;
 }
 
+.treename {
+    font-weight: bold;
+    font-size: large;
+}
+
+.btn_TF {
+    margin: 4px;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px
+}
+
+/*.info_btn {
+    width: 56px;
+    margin-left: 7px;
+}*/
+
 .TableDiv {
-    margin-top: 10%;
-    width: 200px;
+    margin-top: 5%;
+    width: 80%;
+    height: 500px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-style: outset;
+    border-color: #24631a;
+    border-width: 10px;
+    border-style: outset;
+    background-color: #DFDFDF;
 }
 
 .info_section {
-    
 }
