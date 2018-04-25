@@ -50,6 +50,7 @@ public partial class TreeQuiz : System.Web.UI.Page
             {
                 btn_False.Enabled = false;
                 btn_False.Enabled = false;
+                btn_info.Enabled = true;
             }
             else
             {
@@ -60,13 +61,26 @@ public partial class TreeQuiz : System.Web.UI.Page
             if ((Convert.ToInt32(Request.Cookies["HighestAnswered"].Value) > 0))
             {
                 lbl_Score.Visible = true;
-                Score = (Convert.ToDouble(Request.Cookies["Rights"].Value) / Convert.ToDouble(Request.Cookies["HighestAnswered"].Value)) * 100;
+                Score = (Convert.ToDouble(Request.Cookies["Rights"].Value) / ((Convert.ToDouble(Request.Cookies["Rights"].Value)) + Convert.ToDouble(Request.Cookies["Wrongs"].Value)) * 100);
                 lbl_Score.Text = "Score: %" + Convert.ToInt32(Score);
             }
 
             lbl_info.Visible = false;
             btn_info.Visible = true;
             btn_info.Enabled = false;
+
+        }
+    }
+
+    protected Boolean isFinished()
+    {
+        if (TreeNumber > 53)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -157,6 +171,16 @@ public partial class TreeQuiz : System.Web.UI.Page
         GetQuestion(TreeNumber);
         btn_False.BackColor = System.Drawing.Color.White;
         btn_True.BackColor = System.Drawing.Color.White;
+
+        if (isFinished())
+        {
+            btn_True.Enabled = false;
+            btn_False.Enabled = false;
+            btn_info.Enabled = false;
+            lbl_name.Text = "Score: %" + Convert.ToInt32(Score);
+            lbl_Question.Text = "Congratulations, you have finished the quiz!";
+            lbl_Score.Visible = false;
+        }
     }
 
     protected void ImgBtn_Prev_Click(object sender, EventArgs a)
@@ -165,29 +189,12 @@ public partial class TreeQuiz : System.Web.UI.Page
         Response.Cookies["TreeNum"].Value = Convert.ToString(TreeNumber);
         GetTreeName(TreeNumber);
         GetQuestion(TreeNumber);
-        //btn_False.BackColor = System.Drawing.Color.White;
-        //btn_True.BackColor = System.Drawing.Color.White;
         btn_False.Enabled = false;
         btn_True.Enabled = false;
     }
 
     protected void btn_True_Click(object sender, EventArgs a)
     {
-        /*string _Answer = "";
-        string cmdStr = "[dbo].GetAnswer";
-        connection.Open();
-        using (SqlCommand command = new SqlCommand(cmdStr, connection))
-        {
-            command.Parameters.AddWithValue("@treeNumber", TreeNumber);
-            command.CommandType = System.Data.CommandType.StoredProcedure;
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                _Answer = (string)reader["answer"];
-            }
-        }
-        connection.Close();*/
-
         String _Answer = check_Answer();
 
         if (_Answer == "True")
@@ -239,21 +246,6 @@ public partial class TreeQuiz : System.Web.UI.Page
 
     protected void btn_False_Click(object sender, EventArgs a)
     {
-        /*String _Answer = "";
-        string cmdStr = "[dbo].GetAnswer";
-        connection.Open();
-        using (SqlCommand command = new SqlCommand(cmdStr, connection))
-        {
-            command.Parameters.AddWithValue("@treeNumber", TreeNumber);
-            command.CommandType = System.Data.CommandType.StoredProcedure;
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                _Answer = (string)reader["answer"];
-            }
-        }
-        connection.Close();
-        */
         String _Answer = check_Answer();
 
         if (_Answer == "True")

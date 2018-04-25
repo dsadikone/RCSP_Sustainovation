@@ -43,7 +43,7 @@
                                 </asp:Table>
                             </asp:TableCell>
                             <asp:TableCell Width="80%">
-                                <asp:Label ID="lbl_Question" runat="server" Text="Question Goes Here"></asp:Label>
+                                <asp:Label ID="lbl_Question" CssClass="treeInfo" runat="server" Text="Question Goes Here"></asp:Label>
                             </asp:TableCell>
                             <asp:TableCell Width="10%">
                                 <asp:Table ID="table_next" runat="server">
@@ -107,8 +107,8 @@
             </asp:TableRow>
             <asp:TableRow>
                 <asp:TableCell HorizontalAlign="Center" Width ="80%">
-                    <asp:Button ID="btn_info" CssClass="btn_TF" runat="server" Text="+" OnClick="Btn_Info_Click" />
-                    <asp:Label ID="lbl_info" CssClass="info_section" runat="server" Text="" Visible="False"></asp:Label>
+                    <asp:Button ID="btn_info" CssClass="btn_TF" runat="server" Text="More Info" OnClick="Btn_Info_Click" />
+                    <asp:Label ID="lbl_info" CssClass="treeInfo" runat="server" Text="" Visible="False"></asp:Label>
                 </asp:TableCell>
             </asp:TableRow>
         </asp:Table>

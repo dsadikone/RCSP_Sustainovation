@@ -11,6 +11,11 @@
     font-size: large;
 }
 
+.treeInfo{
+    font-size: medium;
+    text-align: center;
+}
+
 .btn_TF {
     margin: 4px;
     border: none;
@@ -37,7 +42,4 @@
     border-width: 10px;
     border-style: outset;
     background-color: #DFDFDF;
-}
-
-.info_section {
 }
